@@ -9,19 +9,17 @@ class OrcidPublicationsController < ::ApplicationController
     guardian.ensure_can_see_profile!(user)
 
     # custom_field_id: 3 veritabanında 'user_field_3' olarak tutulur.
-    orcid_id = user.custom_fields["user_field_3"]
+    raw_orcid = user.custom_fields["user_field_3"]
+    orcid_id = nil
 
     if raw_orcid.present?
-    # Gelen değer tam bir URL ise (https://orcid.org/...) parçalayıp sadece en sondaki ID'yi al.
-    # Sadece ID geldiyse değişiklik yapmadan kullan.
-    orcid_id = raw_orcid.strip.split('/').last
-
-    # İsteği temizlenmiş ID ile yap
-    # url = "https://pub.orcid.org/v3.0/#{orcid_id}/works"
+      # Gelen değer tam bir URL ise (https://orcid.org/...) parçalayıp sadece en sondaki ID'yi al.
+      # Sadece ID geldiyse değişiklik yapmadan kullan.
+      orcid_id = raw_orcid.strip.split('/').last
     end
 
     if orcid_id.blank?
-      return render json: { publications: [], error: "ORCID ID bulunamadı." }, status: :ok
+      return render json: { publications: [], error: "ORCID ID bulunamadı veya gizli." }, status: :ok
     end
 
     cache_key = "orcid_publications_#{orcid_id}"
