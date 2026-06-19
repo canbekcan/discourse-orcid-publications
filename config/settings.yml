@@ -1,0 +1,4 @@
+plugins:
+  orcid_publications_enabled:
+    default: true
+    client: true
