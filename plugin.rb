@@ -16,6 +16,10 @@ after_initialize do
   require_relative "app/controllers/orcid_publications_controller.rb"
 
   Discourse::Application.routes.append do
+    # 1. Frontend'in JSON verisi çektiği Backend API Rotası
     get "u/:username/orcid-publications" => "orcid_publications#index", constraints: { username: RouteFormat.username }
+    
+    # 2. Sayfa yenilendiğinde Rails'in Ember.js arayüzünü başlatmasını sağlayan UI Rotası
+    get "u/:username/publications" => "users#show", constraints: { username: RouteFormat.username }
   end
 end
