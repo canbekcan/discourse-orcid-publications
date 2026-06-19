@@ -1,11 +1,11 @@
 import Component from "@glimmer/component";
 import { LinkTo } from "@ember/routing";
-import { i18n } from "discourse-i18n";
+// DÜZELTİLEN SATIR: Helper'ı Discourse standartlarında dahil ediyoruz.
+import i18n from "discourse-common/helpers/i18n"; 
 import icon from "discourse-common/helpers/d-icon";
 
 export default class OrcidTab extends Component {
   get hasOrcid() {
-    // Profil sahibinin custom_field'larına erişim
     return !!this.args.outletArgs.model.user_fields?.["3"];
   }
 

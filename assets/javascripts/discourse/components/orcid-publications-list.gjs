@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
-import { i18n } from "discourse-i18n";
+// DÜZELTİLEN SATIR:
+import i18n from "discourse-common/helpers/i18n";
 import icon from "discourse-common/helpers/d-icon";
 
 export default class OrcidPublicationsList extends Component {
