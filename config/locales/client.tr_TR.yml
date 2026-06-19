@@ -1,0 +1,6 @@
+tr_TR:
+  js:
+    discourse_orcid_publications:
+      tab_title: "Yayınlar"
+      publications_header: "Akademik Yayınlar"
+      no_publications: "Bu kullanıcıya ait herhangi bir yayın bulunamadı veya ORCID hesabı gizli."

@@ -1,0 +1,53 @@
+.orcid-publications-wrapper {
+  margin-top: 1em;
+
+  .orcid-publications-title {
+    margin-bottom: 1em;
+    font-size: var(--font-up-3);
+    color: var(--primary);
+  }
+
+  .orcid-publications-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .publication-item {
+      padding: 1em;
+      border-bottom: 1px solid var(--primary-low);
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--secondary-medium);
+      }
+
+      .publication-title {
+        font-weight: bold;
+        font-size: var(--font-up-1);
+        margin-bottom: 0.5em;
+
+        a {
+          color: var(--tertiary);
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .publication-meta {
+        display: flex;
+        gap: 1em;
+        font-size: var(--font-down-1);
+        color: var(--primary-medium);
+
+        .journal, .year {
+          display: flex;
+          align-items: center;
+          gap: 0.3em;
+        }
+      }
+    }
+  }
+}
