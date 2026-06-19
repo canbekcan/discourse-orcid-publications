@@ -1,51 +1,127 @@
+// 1. Profil Menüsü Sekme Sıralaması ve Mobil Görünüm
+ul.user-nav {
+  display: flex;
+  flex-wrap: wrap;
+
+  // Varsayılan olarak diğer sekmeleri en sona it
+  > li {
+    order: 10;
+  }
+
+  // 1. Sırada Özet (Summary)
+  > li.user-nav__summary {
+    order: 1 !important;
+  }
+
+  // 2. Sırada Bizim Eklentimiz (Yayınlar)
+  > li.user-nav__orcid-publications {
+    order: 2 !important;
+
+    // Ekran daraldığında yazıyı gizle, sadece ikon kalsın
+    @media screen and (max-width: 767px) {
+      .orcid-tab-text {
+        display: none;
+      }
+    }
+  }
+
+  // 3. Sırada Etkinlik (Activity)
+  > li.user-nav__activity {
+    order: 3 !important;
+  }
+}
+
+// 2. Özet İstatistikler Yükleme Animasyonu
+.orcid-stat .value .spinner-small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+  margin: 0 auto;
+}
+
+// 3. Akademik Yayınlar Liste Stili
 .orcid-publications-wrapper {
   margin-top: 1em;
 
   .orcid-publications-title {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     font-size: var(--font-up-3);
     color: var(--primary);
+    border-bottom: 2px solid var(--tertiary-low);
+    padding-bottom: 0.5em;
   }
 
-  .orcid-publications-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .orcid-academic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 
-    .publication-item {
-      padding: 1em;
-      border-bottom: 1px solid var(--primary-low);
-      transition: background-color 0.2s ease;
+    .academic-item {
+      display: flex;
+      gap: 1.2em;
+      padding: 1.2em;
+      background: var(--secondary);
+      border: 1px solid var(--primary-low);
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
 
       &:hover {
-        background-color: var(--secondary-medium);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        border-color: var(--tertiary-low);
       }
 
-      .publication-title {
+      .item-number {
+        flex-shrink: 0;
+        width: 45px;
+        height: 45px;
+        background: var(--tertiary-low);
+        color: var(--tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
         font-weight: bold;
         font-size: var(--font-up-1);
-        margin-bottom: 0.5em;
-
-        a {
-          color: var(--tertiary);
-          text-decoration: none;
-          
-          &:hover {
-            text-decoration: underline;
-          }
-        }
       }
 
-      .publication-meta {
+      .item-content {
         display: flex;
-        gap: 1em;
-        font-size: var(--font-down-1);
-        color: var(--primary-medium);
+        flex-direction: column;
+        justify-content: center;
 
-        .journal, .year {
+        .publication-title {
+          font-weight: bold;
+          font-size: var(--font-up-1);
+          line-height: 1.4;
+          margin-bottom: 0.6em;
+
+          a {
+            color: var(--tertiary);
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .publication-meta {
           display: flex;
-          align-items: center;
-          gap: 0.3em;
+          flex-wrap: wrap;
+          gap: 1.5em;
+          font-size: var(--font-down-1);
+          color: var(--primary-medium);
+
+          .journal, .year {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+            
+            .d-icon {
+              color: var(--tertiary);
+            }
+          }
         }
       }
     }

@@ -51,11 +51,10 @@ class OrcidPublicationsController < ::ApplicationController
   def parse_orcid_response(data)
     return [] if data["group"].blank?
 
-    data["group"].map do |group|
+    publications = data["group"].map do |group|
       summary = group["work-summary"]&.first
       next unless summary
 
-      # OIDC standartlarına uygun veri ayıklama
       title = summary.dig("title", "title", "value")
       year = summary.dig("publication-date", "year", "value")
       journal = summary.dig("journal-title", "value")
@@ -68,5 +67,17 @@ class OrcidPublicationsController < ::ApplicationController
 
       { title: title, year: year, journal: journal, url: url }
     end.compact
+
+    # 1. Önce yıllara göre azalan (descending) sırada diz (En yeni en üstte)
+    # Yılı olmayanları (nil) 0 kabul ederek en alta atar.
+    publications.sort_by! { |p| -(p[:year].to_i) }
+
+    # 2. Toplam sayıdan geriye doğru Numaralandır (10, 9, 8... 1)
+    total_count = publications.size
+    publications.each_with_index do |pub, index|
+      pub[:number] = total_count - index
+    end
+
+    publications
   end
 end

@@ -1,6 +1,5 @@
 import Component from "@glimmer/component";
 import { LinkTo } from "@ember/routing";
-// DÜZELTİLEN SATIR: Helper'ı Discourse standartlarında dahil ediyoruz.
 import i18n from "discourse-common/helpers/i18n"; 
 import icon from "discourse-common/helpers/d-icon";
 
@@ -14,7 +13,7 @@ export default class OrcidTab extends Component {
       <li class="user-nav__orcid-publications">
         <LinkTo @route="user.orcidPublications" @model={{@outletArgs.model}}>
           {{icon "book"}}
-          {{i18n "discourse_orcid_publications.tab_title"}}
+          <span class="orcid-tab-text">{{i18n "discourse_orcid_publications.tab_title"}}</span>
         </LinkTo>
       </li>
     {{/if}}
