@@ -11,8 +11,7 @@ class OrcidPublicationsController < ::ApplicationController
     # custom_field_id: 3 veritabanında 'user_field_3' olarak tutulur.
     # raw_orcid = user.custom_fields["user_field_3"]
     field_name = SiteSetting.orcid_custom_field_name
-    user.custom_fields[field_name] = extracted_orcid_id
-    user.save_custom_fields
+    raw_orcid = user.custom_fields[field_name]
     orcid_id = nil
 
     if raw_orcid.present?
