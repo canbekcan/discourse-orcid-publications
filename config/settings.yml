@@ -3,5 +3,5 @@ plugins:
     default: true
     client: true
   orcid_custom_field_name:
-    default: 'user_field_17'
+    default: 'user_field_3'
     type: string
