@@ -2,7 +2,7 @@
 # about: ORCID (custom_field_id: 3) üzerinden kullanıcı yayınlarını profilde listeler.
 # version: 1.0.0
 # authors: Can Bekcan
-# url: https://github.com/your-org/discourse-orcid-publications
+# url: https://github.com/canbekcan/discourse-orcid-publications
 
 enabled_site_setting :orcid_publications_enabled
 
