@@ -1,3 +1,4 @@
 en:
   site_settings:
     orcid_publications_enabled: "Enable the Discourse ORCID Publications plugin."
+    orcid_custom_field_name: "The custom user field name that stores the ORCID ID (e.g., user_field_3)."

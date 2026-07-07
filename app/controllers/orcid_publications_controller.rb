@@ -9,7 +9,9 @@ class OrcidPublicationsController < ::ApplicationController
     guardian.ensure_can_see_profile!(user)
 
     # custom_field_id: 3 veritabanında 'user_field_3' olarak tutulur.
-    raw_orcid = user.custom_fields["user_field_3"]
+    # raw_orcid = user.custom_fields["user_field_3"]
+    field_name = SiteSetting.orcid_custom_field_name
+    raw_orcid = user.custom_fields[field_name]
     orcid_id = nil
 
     if raw_orcid.present?
