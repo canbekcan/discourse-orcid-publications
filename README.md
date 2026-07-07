@@ -1,3 +1,4 @@
+```
 discourse-orcid-publications/
 ├── plugin.rb
 ├── config/
@@ -27,6 +28,4 @@ discourse-orcid-publications/
 │           └── components/
 │               └── orcid-publications-list.gjs
 
-
-
-
+```
