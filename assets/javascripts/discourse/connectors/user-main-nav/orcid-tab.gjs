@@ -5,7 +5,7 @@ import icon from "discourse-common/helpers/d-icon";
 
 export default class OrcidTab extends Component {
   get hasOrcid() {
-    return !!this.args.outletArgs.model.user_fields?.["17"];
+    return !!this.args.outletArgs.model.user_fields?.["3"];
   }
 
   <template>

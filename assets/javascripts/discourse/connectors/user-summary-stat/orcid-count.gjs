@@ -14,7 +14,7 @@ export default class OrcidCount extends Component {
   }
 
   get hasOrcid() {
-    return !!this.args.outletArgs.model.user_fields?.["17"];
+    return !!this.args.outletArgs.model.user_fields?.["3"];
   }
 
   async fetchCount() {
