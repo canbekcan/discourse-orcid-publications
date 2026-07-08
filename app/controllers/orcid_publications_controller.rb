@@ -12,8 +12,9 @@ class OrcidPublicationsController < ::ApplicationController
     # raw_orcid = user.custom_fields["user_field_3"]
     # Bu kısımda düzenleme yapılmalı. User field kısmını orcid-connect eklentisinden belirtilen alanla eşleştirilmeli.
     # field_name = SiteSetting.orcid_custom_field_name
-    field_name = SiteSetting.orcid_connect_user_field_mappings.presence
-    raw_orcid = user.custom_fields[field_name]
+    # field_name = SiteSetting.orcid_connect_user_field_mappings.presence
+    # raw_orcid = user.custom_fields[field_name]
+    raw_orcid = user.custom_fields["user_field_17"]
     orcid_id = nil
 
     if raw_orcid.present?
