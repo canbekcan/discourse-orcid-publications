@@ -10,6 +10,7 @@ class OrcidPublicationsController < ::ApplicationController
 
     # custom_field_id: 3 veritabanında 'user_field_3' olarak tutulur.
     # raw_orcid = user.custom_fields["user_field_3"]
+    # Bu kısımda düzenleme yapılmalı. User field kısmını orcid-connect eklentisinden belirtilen alanla eşleştirilmeli.
     field_name = SiteSetting.orcid_custom_field_name
     raw_orcid = user.custom_fields[field_name]
     orcid_id = nil
