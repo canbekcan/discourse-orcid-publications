@@ -15,6 +15,10 @@ after_initialize do
 
   require_relative "app/controllers/orcid_publications_controller.rb"
 
+  add_to_serializer(:user, :has_orcid) do
+    UserAssociatedAccount.exists?(user_id: object.id, provider_name: ['orcid_connect', 'orcid'])
+  end
+
   Discourse::Application.routes.append do
     # 1. Frontend'in JSON verisi çektiği Backend API Rotası
     get "u/:username/orcid-publications" => "orcid_publications#index", constraints: { username: RouteFormat.username }
