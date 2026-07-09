@@ -14,7 +14,18 @@ class OrcidPublicationsController < ::ApplicationController
     # field_name = SiteSetting.orcid_custom_field_name
     # field_name = SiteSetting.orcid_connect_user_field_mappings.presence
     # raw_orcid = user.custom_fields[field_name]
-    raw_orcid = user.custom_fields["user_field_17"]
+    # raw_orcid = user.custom_fields["user_field_17"]
+
+    mappings = JSON.parse(SiteSetting.orcid_connect_user_field_mappings.presence || "[]") rescue []
+    sub_mapping = mappings.find { |m| m["claim"] == "sub" }
+
+    if sub_mapping && sub_mapping["user_field_id"].present?
+      field_name = "user_field_#{sub_mapping["user_field_id"]}"
+      raw_orcid = user.custom_fields[field_name]
+    else
+      raw_orcid = nil
+    end
+
     orcid_id = nil
 
     if raw_orcid.present?

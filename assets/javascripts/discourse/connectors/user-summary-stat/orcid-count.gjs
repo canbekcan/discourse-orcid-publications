@@ -3,8 +3,11 @@ import { tracked } from "@glimmer/tracking";
 import { ajax } from "discourse/lib/ajax";
 import i18n from "discourse-common/helpers/i18n";
 import { LinkTo } from "@ember/routing";
+import { inject as service } from "@ember/service";
 
 export default class OrcidCount extends Component {
+  @service siteSettings;
+
   @tracked pubCount = 0;
   @tracked isLoading = true;
 
@@ -14,7 +17,22 @@ export default class OrcidCount extends Component {
   }
 
   get hasOrcid() {
-    return !!this.args.outletArgs.model.user_fields?.["17"];
+    const user = this.args.outletArgs.model;
+    const mappingConfig = this.siteSettings.orcid_connect_user_field_mappings;
+    
+    if (mappingConfig) {
+      try {
+        const mappings = JSON.parse(mappingConfig);
+        const subMapping = mappings.find((m) => m.claim === "sub");
+        
+        if (subMapping && subMapping.user_field_id) {
+          return !!user.user_fields?.[subMapping.user_field_id];
+        }
+      } catch (e) {
+        console.error("ORCID mapping parse error:", e);
+      }
+    }
+    return false;
   }
 
   async fetchCount() {
