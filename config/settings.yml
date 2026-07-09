@@ -2,6 +2,3 @@ plugins:
   orcid_publications_enabled:
     default: true
     client: true
-  orcid_custom_field_name:
-    default: 'user_field_17'
-    type: string
